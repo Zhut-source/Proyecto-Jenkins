@@ -1,0 +1,8 @@
+<div class="calculadora">
+    <input type="text" [value]="display" disabled class="pantalla" />
+    <div class="botones">
+      <button *ngFor="let btn of botones" (click)="presionar(btn)">
+        {{ btn }}
+      </button>
+    </div>
+  </div>
