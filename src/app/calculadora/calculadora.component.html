@@ -1,8 +1,36 @@
 <div class="calculadora">
-    <input type="text" [value]="display" disabled class="pantalla" />
-    <div class="botones">
-      <button *ngFor="let btn of botones" (click)="presionar(btn)">
-        {{ btn }}
-      </button>
-    </div>
+  <input type="text" [value]="display" disabled class="pantalla" />
+
+  <div class="fila">
+    <button class="limpiar" (click)="presionar('C')">C</button>
+    <button (click)="presionar('/')">÷</button>
+    <button (click)="presionar('*')">×</button>
+    <button (click)="presionar('-')">−</button>
   </div>
+
+  <div class="fila">
+    <button (click)="presionar('7')">7</button>
+    <button (click)="presionar('8')">8</button>
+    <button (click)="presionar('9')">9</button>
+    <button (click)="presionar('+')">+</button>
+  </div>
+
+  <div class="fila">
+    <button (click)="presionar('4')">4</button>
+    <button (click)="presionar('5')">5</button>
+    <button (click)="presionar('6')">6</button>
+    <button class="invisible"></button> <!-- Espacio vacío -->
+  </div>
+
+  <div class="fila">
+    <button (click)="presionar('1')">1</button>
+    <button (click)="presionar('2')">2</button>
+    <button (click)="presionar('3')">3</button>
+    <button class="igual" rowspan="2" (click)="presionar('=')">=</button>
+  </div>
+
+  <div class="fila">
+    <button class="cero" (click)="presionar('0')">0</button>
+    <button (click)="presionar('.')">.</button>
+  </div>
+</div>
