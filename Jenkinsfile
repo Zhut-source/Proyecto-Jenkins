@@ -15,14 +15,14 @@ pipeline {
         stage('Test'){
             steps{
                 echo 'ejecutando test'
-                bat '.\\node_modules\\.bin\\ng test --watch=false'
+                bat 'ng test --watch=false'
             }
         }
 
         stage('Build'){
             steps{
                 echo 'Creando build'
-                bat '.\\node_modules\\.bin\\ng build'
+                bat 'ng build'
             }
         }
 
