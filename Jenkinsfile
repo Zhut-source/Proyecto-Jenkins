@@ -8,21 +8,21 @@ pipeline {
         stage('Install'){
             steps{
                 echo 'Instalacion de npm'
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Test'){
             steps{
                 echo 'ejecutando test'
-                sh 'npm ng test --watch=false'
+                bat 'npm ng test --watch=false'
             }
         }
 
         stage('Build'){
             steps{
                 echo 'Creando build'
-                sh 'npm ng build'
+                bat 'npm ng build'
             }
         }
 
