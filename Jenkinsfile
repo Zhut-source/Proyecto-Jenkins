@@ -38,7 +38,9 @@ pipeline {
             }
         }
 
-        post {
+    }
+
+    post {
             success {
                 emailext(
                 subject: '✅ Jenkins Build Satisfactoria: ${JOB_NAME} #${BUILD_NUMBER}',
@@ -61,6 +63,4 @@ pipeline {
             )
             }
         }
-
-    }
 }
