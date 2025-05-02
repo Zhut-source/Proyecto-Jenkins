@@ -44,14 +44,14 @@ pipeline {
             emailext(
             subject: "✅ Build exitoso: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
             body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} finalizó correctamente.\nRevisa: ${env.BUILD_URL}",
-            recipientProviders: [[$class: 'DefaultRecipientProvider']]
+            to: 'mmtn74@gmail.com'
         )
         }
         failure {
             emailext(
             subject: "❌ Build fallido: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
             body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} falló.\nRevisa: ${env.BUILD_URL}",
-            recipientProviders: [[$class: 'DefaultRecipientProvider']]
+            to: 'mmtn74@gmail.com'
         )
         }
     }
