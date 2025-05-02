@@ -2,11 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = '16.20.2'
-    }
-
-    tools {
-        nodejs "${NODE_VERSION}"
+        PATH = "/usr/local/bin:$PATH" // Asegúrate de que Node esté en PATH
     }
 
     stages {
@@ -27,14 +23,14 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo 'Ejecutando pruebas unitarias...'
-                sh 'ng test --watch=false --browsers=ChromeHeadless'
+                sh 'npx ng test --watch=false --browsers=ChromeHeadless'
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Construyendo la aplicación...'
-                sh 'ng build --configuration=production'
+                sh 'npx ng build --configuration=production'
             }
         }
     }
