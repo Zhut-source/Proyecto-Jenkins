@@ -20,21 +20,21 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Instalando dependencias...'
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo 'Ejecutando pruebas unitarias...'
-                sh 'ng test --watch=false --browsers=ChromeHeadless'
+                bat 'ng test --watch=false --browsers=ChromeHeadless'
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Construyendo la aplicación...'
-                sh 'ng build --configuration=production'
+                bat 'ng build --configuration=production'
             }
         }
     }
