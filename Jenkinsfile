@@ -37,30 +37,22 @@ pipeline {
                 echo 'En proceso'
             }
         }
-
     }
 
     post {
-            success {
-                emailext(
-                subject: '✅ Jenkins Build Satisfactoria: ${JOB_NAME} #${BUILD_NUMBER}',
-                body: """<p>La build <b>#${BUILD_NUMBER}</b> del proyecto <b>${JOB_NAME}</b> se completó <b>correctamente</b>.</p>
-                         <p>Ver detalles: <a href="${BUILD_URL}">${BUILD_URL}</a></p>""",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                to: 'tu_correo@dominio.com',
-                mimeType: 'text/html'
-            )
-            }
-
-            failure {
-                emailext(
-                subject: '❌ Jenkins Build Fallida: ${JOB_NAME} #${BUILD_NUMBER}',
-                body: """<p>La build <b>#${BUILD_NUMBER}</b> del proyecto <b>${JOB_NAME}</b> <b>falló</b>.</p>
-                         <p>Revisar errores: <a href="${BUILD_URL}">${BUILD_URL}</a></p>""",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-                to: 'tu_correo@dominio.com',
-                mimeType: 'text/html'
-            )
-            }
+        success {
+            emailext(
+            subject: "✅ Build exitoso: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} finalizó correctamente.\nRevisa: ${env.BUILD_URL}",
+            recipientProviders: [[$class: 'DefaultRecipientProvider']]
+        )
         }
+        failure {
+            emailext(
+            subject: "❌ Build fallido: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} falló.\nRevisa: ${env.BUILD_URL}",
+            recipientProviders: [[$class: 'DefaultRecipientProvider']]
+        )
+        }
+    }
 }
