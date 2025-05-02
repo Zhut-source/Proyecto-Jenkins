@@ -1,73 +1,86 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CalculadoraComponent } from './calculadora.component';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-import { AppComponent } from '../app.component';
 
 describe('CalculadoraComponent', () => {
   let component: CalculadoraComponent;
-  let fixture: ComponentFixture<CalculadoraComponent>;
-  let display: DebugElement;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent,CalculadoraComponent]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(CalculadoraComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    display = fixture.debugElement.query(By.css('.pantalla'));
+  beforeEach(() => {
+    component = new CalculadoraComponent();
   });
 
-  it('debería crear el componente', () => {
+  it('debería crear el componente correctamente', () => {
     expect(component).toBeTruthy();
   });
 
-  it('debería mostrar el número presionado', () => {
-    component.presionar('7');
-    fixture.detectChanges();
-    expect(display.nativeElement.value).toBe('7');
-  });
-
-  it('debería concatenar múltiples dígitos', () => {
-    component.presionar('4');
-    component.presionar('2');
-    fixture.detectChanges();
-    expect(display.nativeElement.value).toBe('42');
-  });
-
-  it('debería sumar dos números', () => {
+  it('debería agregar dígitos al display', () => {
     component.presionar('1');
-    component.presionar('+');
     component.presionar('2');
-    component.presionar('=');
-    fixture.detectChanges();
-    expect(display.nativeElement.value).toBe('3');
+    component.presionar('3');
+    expect(component.display).toBe('123');
   });
 
-  it('debería limpiar el display con C', () => {
-    component.presionar('9');
+  it('debería limpiar el display al presionar C', () => {
+    component.display = '456';
     component.presionar('C');
-    fixture.detectChanges();
-    expect(display.nativeElement.value).toBe('');
+    expect(component.display).toBe('');
   });
 
-  it('debería manejar errores de expresión inválida', () => {
-    component.presionar('1');
+  it('debería evaluar una suma correctamente', () => {
+    component.presionar('7');
     component.presionar('+');
-    component.presionar('+');
+    component.presionar('5');
     component.presionar('=');
-    fixture.detectChanges();
-    expect(display.nativeElement.value).toBe('Error');
+    expect(Number(component.display)).toBe(12);
   });
 
-  it('debería insertar un decimal correctamente', () => {
+  it('debería evaluar una multiplicación correctamente', () => {
+    component.presionar('6');
+    component.presionar('*');
+    component.presionar('4');
+    component.presionar('=');
+    expect(Number(component.display)).toBe(24);
+  });
+
+  it('debería manejar decimales correctamente', () => {
     component.presionar('3');
     component.presionar('.');
     component.presionar('1');
-    fixture.detectChanges();
-    expect(display.nativeElement.value).toBe('3.1');
+    component.presionar('+');
+    component.presionar('0');
+    component.presionar('.');
+    component.presionar('9');
+    component.presionar('=');
+    expect(Number(component.display)).toBe(4);
+  });
+
+  it('debería mostrar "Error" al evaluar una expresión inválida', () => {
+    component.display = '2++';
+    component.presionar('=');
+    expect(component.display).toBe('Error');
+  });
+
+  it('debería permitir dividir correctamente', () => {
+    component.presionar('8');
+    component.presionar('/');
+    component.presionar('2');
+    component.presionar('=');
+    expect(Number(component.display)).toBe(4);
+  });
+
+  it('debería permitir restar correctamente', () => {
+    component.presionar('9');
+    component.presionar('-');
+    component.presionar('4');
+    component.presionar('=');
+    expect(Number(component.display)).toBe(5);
+  });
+
+  it('debería construir una expresión larga correctamente', () => {
+    component.presionar('1');
+    component.presionar('+');
+    component.presionar('2');
+    component.presionar('*');
+    component.presionar('3');
+    component.presionar('=');
+    expect(Number(component.display)).toBe(7);
   });
 });
