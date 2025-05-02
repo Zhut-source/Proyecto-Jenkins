@@ -5,6 +5,13 @@ pipeline {
 
     stages{
 
+        stage('Hello'){
+            steps{
+                echo 'Holii'
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GithubToken', url: 'https://github.com/Zhut-source/Proyecto-Jenkins.git']])
+            }
+        }
+
         stage('Install'){
             steps{
                 echo 'Instalacion de npm'
