@@ -1,50 +1,38 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_VERSION = '16.20.2'
-    }
+    tools {nodejs "nodejs"}
 
-    tools {
-        nodejs "${NODE_VERSION}"
-    }
+    stages{
 
-    stages {
-        stage('Checkout') {
-            steps {
-                echo 'Clonando repositorio...'
-                checkout scm
+        stage('Install'){
+            steps{
+                echo 'Instalacion de npm'
+                sh 'npm install'
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                echo 'Instalando dependencias...'
-                bat 'npm install'
+        stage('Test'){
+            steps{
+                echo 'ejecutando test'
+                sh 'npm ng test --watch=false'
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                echo 'Ejecutando pruebas unitarias...'
-                bat 'ng test --watch=false --browsers=ChromeHeadless'
+        stage('Build'){
+            steps{
+                echo 'Creando build'
+                sh 'npm ng build'
             }
         }
 
-        stage('Build') {
-            steps {
-                echo 'Construyendo la aplicación...'
-                bat 'ng build --configuration=production'
+        stage('Deploy'){
+            steps{
+                echo 'En proceso'
             }
         }
-    }
 
-    post {
-        success {
-            echo 'Pipeline completado con éxito.'
-        }
-        failure {
-            echo 'El pipeline falló.'
-        }
+
+
     }
 }
