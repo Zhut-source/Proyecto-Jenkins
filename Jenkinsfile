@@ -34,8 +34,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat 'netlify deploy --prod --dir=dist/calculadora-angular --site=244c20a7-27ff-47c8-b121-e8d77339bff9 --auth-token=nfp_6r997ojSrAtHF5cpLzK6AYvgyfvaM7vna073'
-            }
+                echo 'Despliegue'
+                withCredentials([string(credentialsId: 'NETLIFY_TOKEN', variable: 'NETLIFY_AUTH_TOKEN')]) {
+                    bat "netlify deploy --prod --dir=dist/calculadora-angular --site=244c20a7-27ff-47c8-b121-e8d77339bff9 --auth %NETLIFY_AUTH_TOKEN%"
+                }
         }
     }
 
