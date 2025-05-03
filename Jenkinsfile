@@ -34,7 +34,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'En proceso'
+                echo 'El deploy será manejado por Netlify tras el push a GitHub'
             }
         }
     }
