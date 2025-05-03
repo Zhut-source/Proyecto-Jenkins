@@ -4,7 +4,7 @@ pipeline {
     tools { nodejs '16.20.2' }
 
     environment {
-        NETLIFY_AUTH_TOKEN = credentials('nfp_XVu3uoWdn7w71ahGcUo5JAmXmmqQAbLf753a')
+        NETLIFY_AUTH_TOKEN = credentials('nfp_6r997ojSrAtHF5cpLzK6AYvgyfvaM7vna073')
         NETLIFY_SITE_ID = '244c20a7-27ff-47c8-b121-e8d77339bff9'
     }
 
