@@ -22,6 +22,7 @@ pipeline {
             steps {
                 echo 'ejecutando test'
                 bat 'ng test --watch=false'
+                
             }
         }
 
