@@ -52,7 +52,7 @@ pipeline {
                     subject: "❌ Falla en etapa de test: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                     body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} falló en la etapa de *test*.\nRevisa: ${env.BUILD_URL}"
                 )
-                        error('Fallaron los tests') // detiene el pipeline
+                        error('Fallaron los tests') // stop para el pipeline
                     }
                 }
             }
