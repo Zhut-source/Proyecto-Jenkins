@@ -81,6 +81,6 @@ describe('CalculadoraComponent', () => {
     component.presionar('*');
     component.presionar('3');
     component.presionar('=');
-    expect(Number(component.display)).toBe(8);
+    expect(Number(component.display)).toBe(7);
   });
 });

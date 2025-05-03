@@ -3,6 +3,11 @@ pipeline {
 
     tools { nodejs '16.20.2' }
 
+    environment {
+        NETLIFY_AUTH_TOKEN = credentials('nfp_Lnj46SMTWg2z6QMgCiK1Am8VUWVsuType11c') // almacena tu token en las credenciales de Jenkins
+        NETLIFY_SITE_ID = '244c20a7-27ff-47c8-b121-e8d77339bff9'
+    }
+
     stages {
         stage('Hello') {
             steps {
@@ -22,7 +27,6 @@ pipeline {
             steps {
                 echo 'ejecutando test'
                 bat 'ng test --watch=false'
-                
             }
         }
 
@@ -36,6 +40,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'El deploy será manejado por Netlify tras el push a GitHub'
+                bat 'npm install -g netlify-cli'
+                bat 'netlify deploy --prod --dir=dist/calculadora-angular' --site=%NETLIFY_SITE_ID%'
             }
         }
     }
