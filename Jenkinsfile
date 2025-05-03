@@ -41,7 +41,7 @@ pipeline {
             steps {
                 echo 'El deploy será manejado por Netlify tras el push a GitHub'
                 bat 'npm install -g netlify-cli'
-                bat 'netlify deploy --prod --dir=dist/calculadora-angular' --site=%NETLIFY_SITE_ID%'
+                bat 'netlify deploy --prod --dir=dist/calculadora-angular --site=%NETLIFY_SITE_ID%'
             }
         }
     }
