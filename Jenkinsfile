@@ -34,7 +34,6 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat 'npm install -g netlify-cli'
                 bat 'netlify deploy --prod --dir=dist/calculadora-angular --site=244c20a7-27ff-47c8-b121-e8d77339bff9 --auth-token=nfp_6r997ojSrAtHF5cpLzK6AYvgyfvaM7vna073'
             }
         }
