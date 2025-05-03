@@ -50,7 +50,8 @@ pipeline {
             } catch (e) {
                         emailext(
                     subject: "❌ Falla en etapa de test: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                    body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} falló en la etapa de *test*.\nRevisa: ${env.BUILD_URL}"
+                    body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} falló en la etapa de *test*.\nRevisa: ${env.BUILD_URL}",
+                    to: 'mmtn74@gmail.com'
                 )
                         error('Fallaron los tests') // stop para el pipeline
                     }
@@ -79,13 +80,15 @@ pipeline {
         success {
             emailext(
                 subject: "✅ Build exitoso: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} finalizó correctamente.\nRevisa: ${env.BUILD_URL}"
+                body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} finalizó correctamente.\nRevisa: ${env.BUILD_URL}",
+                to: 'mmtn74@gmail.com'
             )
         }
         failure {
             emailext(
                 subject: "❌ Build fallido: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} falló.\nRevisa: ${env.BUILD_URL}"
+                body: "El build ${env.JOB_NAME} #${env.BUILD_NUMBER} falló.\nRevisa: ${env.BUILD_URL}",
+                to: 'mmtn74@gmail.com'
             )
         }
     }
