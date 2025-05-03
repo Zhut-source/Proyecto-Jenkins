@@ -4,6 +4,13 @@ pipeline {
     tools { nodejs '16.20.2' }
 
     stages {
+        
+        stage('Check Netlify CLI') {
+            steps {
+                bat 'netlify --version'
+            }
+        }
+
         stage('Hello') {
             steps {
                 echo 'Holii'
@@ -43,7 +50,7 @@ pipeline {
             steps {
                 echo 'Despliegue'
                 withCredentials([string(credentialsId: 'NETLIFY_TOKEN', variable: 'NETLIFY_AUTH_TOKEN')]) {
-                    bat "netlify deploy --prod --dir=dist/calculadora-angular --site=244c20a7-27ff-47c8-b121-e8d77339bff9 --auth %NETLIFY_AUTH_TOKEN%"
+                    bat 'netlify deploy --prod --dir=dist/calculadora-angular --site=244c20a7-27ff-47c8-b121-e8d77339bff9 --auth %NETLIFY_AUTH_TOKEN%'
                 }
             }
         }
