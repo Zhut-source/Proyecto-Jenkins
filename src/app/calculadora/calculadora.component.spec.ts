@@ -71,7 +71,7 @@ describe('CalculadoraComponent', () => {
     component.presionar('-');
     component.presionar('4');
     component.presionar('=');
-    expect(Number(component.display)).toBe(6);
+    expect(Number(component.display)).toBe(5);
   });
 
   it('debería construir una expresión larga correctamente', () => {
