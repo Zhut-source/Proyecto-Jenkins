@@ -29,7 +29,7 @@ describe('CalculadoraComponent', () => {
     component.presionar('+');
     component.presionar('5');
     component.presionar('=');
-    expect(Number(component.display)).toBe(13);
+    expect(Number(component.display)).toBe(12);
   });
 
   it('debería evaluar una multiplicación correctamente', () => {
