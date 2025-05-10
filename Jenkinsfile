@@ -5,7 +5,7 @@ pipeline {
 
     stages {
 
-        //Estado de comprobacion Netlify CLI
+        //Estado de Netlify CLI
         stage('Check Netlify CLI') {
             steps {
                 echo 'Check version'
@@ -15,7 +15,7 @@ pipeline {
 
         stage('Hello') {
             steps {
-                echo 'Hola, Check que jenkins este conectado a repositorio GITHub'
+                echo 'Check que jenkins este conectado a repositorio GITHub'
                 checkout scmGit(
                     branches: [[name: '*/main']],
                     extensions: [],
@@ -33,6 +33,7 @@ pipeline {
                 bat 'npm install'
             }
         }
+        
         /*version antigua
         stage('Test') {
             steps {
