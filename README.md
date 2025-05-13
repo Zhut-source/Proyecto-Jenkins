@@ -31,3 +31,6 @@ Cambios Medina test de merge
   
 ## Ariana Daleska Meza Zambrano
 Cambio realizado por Ariana Meza
+
+## Pruebita
+pruba del proyecto de Gestion
